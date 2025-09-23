@@ -1,17 +1,39 @@
-# Introduction
+# ClearLag
 
-The SerenityJS sample plugin provides a basic configuration for plugin usage in the software. To get started, either clone this repo or create a new repository using this template. A firm understanding of TypeScript and JavaScript will be very beneficial for plugin development.
+A powerful and efficient plugin for **SerenityJS** designed to reduce server lag by intelligently managing and clearing ground items and other entities. Keep your server running smoothly without impacting gameplay.
 
-## Usage
+## Features
 
-The plugin system in SerenityJS is pretty simple to use and to develop on. Make sure you place your plugin within the `plugins` directory within your SerenityJS server. Once the server starts up, it will recognize the plugin and process it accordingly. Plugins that are written in TypeScript will be built upon usage. Visit our [documentation](https://serenityjs.net/) to get started!
+* **Automatic Entity Clearing:** Automatically clears dropped items and other configured entities at a set interval to prevent accumulation and reduce lag.
+* **Manual Clearing:** Provides commands for administrators to manually clear entities when needed.
+* **Highly Configurable:** Easily customize clearing intervals and warning messages.
+* **Warning Broadcasts:** Notifies players with configurable messages before a clear occurs, so they have time to pick up important items.
+* **Lightweight:** Designed to be efficient and have a minimal performance impact on your server.
 
-## Building
+## Configuration
 
-This plugin sample uses TypeScript to build your plugin. Anytime you make a change to your plugin, you will need to transpile your code into pure JavaScript. To do this, run the command `npm run build` in the source directory of your plugin. You should notice a new `dist` directory was created. The will be the entry point to your plugin.
+You can configure the plugin by editing the `config.json` (or relevant file) located in your plugin's data folder.
 
-### Getting Started
-Learn the basics of creating custom commands and the format for overloads. [Custom Commands](./examples/commands/README.md/)
+```json
+{
+  "auto-clear-interval": 120000,
+  "announce-message": "Clearing entities in {time}!",
+  "message": [
+    "Cleared {entities} entities!",
+    "Cleared {items} items!"
+  ],
+  "blacklisted-worlds": [
+    "world",
+    "world-2"
+  ]
+}
+```
 
-Learn the basics of creating custom components. [Custom Components](./examples/components/README.md/)
+* **`auto-clear-interval`**: The time in milliseconds between each automatic clear (120000ms = 2 minutes).
+* **`announce-message`**: The message broadcast to the server before a clear. The `{time}` placeholder will be replaced with the remaining time.
+* **`message`**: The messages sent after the clear is complete. Placeholders like `{entities}` and `{items}` will be replaced with the actual numbers.
+* **`blacklisted-worlds`**: A list of worlds where entities will **not** be cleared.
 
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
