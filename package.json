@@ -1,8 +1,8 @@
 {
   "name": "clearlag",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Skyder",
-  "description": "Sample plugin provides a basic configuration for plugin usage in the SerenityJS software.",
+  "description": "A plugin to clear entities and items from the world to reduce lag.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "license": "MIT",
@@ -21,8 +21,8 @@
     "minify": true
   },
   "keywords": [
-    "Sample",
-    "Example"
+    "Management",
+    "Optimization"
   ],
   "peerDependencies": {
     "@serenityjs/core": "*",
