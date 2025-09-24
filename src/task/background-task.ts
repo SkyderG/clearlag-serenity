@@ -29,7 +29,7 @@ class BackgroundTask {
           world.sendMessage(
             config["announce-message"].replace(
               "{time}",
-              `${remainingMin} minutes`
+              `${remainingMin}` + config.message.minute
             )!
           );
         }
@@ -38,7 +38,10 @@ class BackgroundTask {
           const seconds = autoClearInterval / 1000;
 
           world.sendMessage(
-            config["announce-message"].replace("{time}", `${seconds} seconds`)!
+            config["announce-message"].replace(
+              "{time}",
+              `${seconds}` + config.message.seconds
+              )!
           );
         }
 
@@ -72,7 +75,7 @@ class BackgroundTask {
 
       for (const entity of entityFilter) {
         if (entity.isItem()) {
-          itemCount += entity.getTrait(EntityItemStackTrait).itemStack.amount;
+          itemCount += entity.getTrait(EntityItemStackTrait).itemStack.stackSize;
         } else {
           entityCount++;
         }
@@ -80,12 +83,12 @@ class BackgroundTask {
         entity.despawn();
       }
 
-      const clearEntitiesMessage = config.message[0]?.replace(
+      const clearEntitiesMessage = config.message.cleared.entity?.replace(
         "{entities}",
         entityCount.toString()
       ) as string;
 
-      const clearItemsMessage = config.message[1]?.replace(
+      const clearItemsMessage = config.message.cleared.item?.replace(
         "{items}",
         itemCount.toString()
       ) as string;
