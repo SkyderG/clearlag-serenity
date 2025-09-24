@@ -18,10 +18,14 @@ You can configure the plugin by editing the `config.json` (or relevant file) loc
 {
   "auto-clear-interval": 120000,
   "announce-message": "Clearing entities in {time}!",
-  "message": [
-    "Cleared {entities} entities!",
-    "Cleared {items} items!"
-  ],
+  "message": {
+    "seconds": "second(s)",
+    "minute": "minute(s)",
+    "cleared": {
+      "item": "Cleared {count} items",
+      "entity": "Cleared {count} entities"
+    }
+  },
   "blacklisted-worlds": [
     "world",
     "world-2"
