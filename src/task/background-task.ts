@@ -12,38 +12,37 @@ class BackgroundTask {
   }
 
   public runInterval(): void {
-    const clearIntervalMS = config["auto-clear-interval"];
+    const clearIntervalMS = config["auto-clear-interval"]
 
     let autoClearInterval = config["auto-clear-interval"];
     const interval = setInterval(() => {
-      autoClearInterval -= 1000;
+      autoClearInterval -= 1 / 60;
 
-      const remainingMin = Math.floor(autoClearInterval / 60000);
+      const remainingMin = Math.floor(autoClearInterval);
 
       const worlds = this.plugin.serenity.worlds;
 
       worlds.forEach((world) => {
         if (config["blacklisted-worlds"].includes(world.identifier)) return;
 
-        if (remainingMin > 0 && remainingMin % 60000 === 0) {
+        if (remainingMin > 0 && autoClearInterval % 1 === 0) {
           world.sendMessage(
             config["announce-message"].replace(
               "{time}",
-              `${remainingMin}` + config.message.minute
+              `${remainingMin} ` + config.message.minute
             )!
           );
         }
 
-        if (autoClearInterval <= 5000 && autoClearInterval > 0) {
-          const seconds = autoClearInterval / 1000;
-
-          world.sendMessage(
-            config["announce-message"].replace(
-              "{time}",
-              `${seconds}` + config.message.seconds
+          const secondsLeft = Math.ceil(autoClearInterval * 60);
+          if (secondsLeft < 10 && secondsLeft > 0) {
+            world.sendMessage(
+              config["announce-message"].replace(
+                "{time}",
+                `${secondsLeft} ` + config.message.seconds
               )!
-          );
-        }
+            );
+          }
 
         if (autoClearInterval <= 0) {
           clearInterval(interval);
@@ -55,7 +54,7 @@ class BackgroundTask {
     setInterval(() => {
       autoClearInterval = config["auto-clear-interval"];
       this.onRun();
-    }, clearIntervalMS);
+    }, clearIntervalMS * 60000);
   }
 
   public onRun(): void {

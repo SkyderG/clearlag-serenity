@@ -1,6 +1,6 @@
 {
   "name": "clearlag",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Skyder",
   "description": "A plugin to clear entities and items from the world to reduce lag.",
   "main": "dist/index.js",

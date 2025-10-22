@@ -5,7 +5,7 @@ class ClearLagPlugin extends Plugin implements PluginEvents {
   public readonly type = PluginType.Addon;
 
   public constructor() {
-    super("clearlag", "1.0.1");
+    super("clearlag", "1.0.2");
   }
 
   public onInitialize(): void {

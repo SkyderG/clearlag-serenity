@@ -1,5 +1,5 @@
 {
-  "auto-clear-interval": 120000,
+  "auto-clear-interval": 2,
   "announce-message": "Clearing entities in {time}!",
   "message": {
     "seconds": "second(s)",
