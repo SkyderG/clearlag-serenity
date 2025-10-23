@@ -33,7 +33,7 @@ You can configure the plugin by editing the `config.json` (or relevant file) loc
 }
 ```
 
-* **`auto-clear-interval`**: The time in milliseconds between each automatic clear (example: 2 minutes).
+* **`auto-clear-interval`**: The time in minutes between each automatic clear (example: 2 minutes).
 * **`announce-message`**: The message broadcast to the server before a clear. The `{time}` placeholder will be replaced with the remaining time.
 * **`message`**: The messages sent after the clear is complete. Placeholders like `{entities}` and `{items}` will be replaced with the actual numbers.
 * **`blacklisted-worlds`**: A list of worlds where entities will **not** be cleared.
